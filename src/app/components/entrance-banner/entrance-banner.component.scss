@@ -1,0 +1,23 @@
+$itens-width: 500px;
+
+.header-container {
+    width: $itens-width;
+    margin: 56px 0 48px 0;
+    img {
+        height: 70px;
+    }
+}
+
+.text-container {
+    width: $itens-width;
+    .title {
+        font-weight: 900;
+    }
+    .sub-title {
+        font-weight: 600;
+    }
+}
+
+.illutration-container {
+    width: $itens-width;
+}

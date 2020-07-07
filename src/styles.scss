@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+$font-family-sans-serif: 'Overpass', sans-serif;
+$theme-colors: ( primary: #00186c, success: #33c15d, danger: #f42a2f, );
+
+@import "node_modules/bootstrap/scss/bootstrap";

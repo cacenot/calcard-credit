@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "calcard-credit"
+    }
+  },
+  "defaultProject": "calcard-credit",
+  "cli": {
+    "analytics": false
+  }
 }

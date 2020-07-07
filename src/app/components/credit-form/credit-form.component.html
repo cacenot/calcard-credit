@@ -1,0 +1,122 @@
+<div class="d-flex flex-column align-items-center">
+    <div class="form-container" *ngIf="!submitted || loading; else resultBlock">
+        <div class="title-container">
+            <h3 class="title">Faça seu cadastro.</h3>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" #ngForm="ngForm">
+            <div class="form-group">
+                <label>Nome completo</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    formControlName="name" 
+                    [class.is-invalid]="ngForm.submitted && form.controls.name.invalid"
+                >
+                <div class="invalid-feedback">
+                    Preencha o seu nome.
+                </div>
+            </div>
+            <div class="form-group">
+                <label>CPF</label>
+                <input 
+                    type="text" 
+                    mask="000.000.000-00" 
+                    class="form-control" 
+                    formControlName="cpf" 
+                    [class.is-invalid]="ngForm.submitted && form.controls.cpf.invalid"
+                >
+                <div class="invalid-feedback">
+                    Cpf inválido.
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Data de nascimento</label>
+                <input 
+                    type="date" 
+                    class="form-control" 
+                    formControlName="birthday" 
+                    [class.is-invalid]="ngForm.submitted && form.controls.birthday.invalid"
+                >
+                <div class="invalid-feedback">
+                    Preencha sua data de nascimento.
+                </div>
+            </div>
+            <div>
+                <label>Sexo</label>
+            </div>
+            <div class="gender-form-control">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="radioGender1" name="gender" class="custom-control-input" value="M" checked>
+                    <label class="custom-control-label" for="radioGender1">Masculino</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="radioGender2" name="gender" class="custom-control-input" value="F">
+                    <label class="custom-control-label" for="radioGender2">Feminino</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Estado civil</label>
+                <select 
+                    class="custom-select" 
+                    formControlName="martialStatus" 
+                    [class.is-invalid]="ngForm.submitted && form.controls.martialStatus.invalid"
+                >
+                    <option selected>Selecione...</option>
+                    <option value="solteiro(a)">Solteiro(a)</option>
+                    <option value="casado(a)">Casado(a)</option>
+                    <option value="Divorciado(a)">Divorciado(a)</option>
+                    <option value="Viuvo(a)">Viuvo(a)</option>
+                </select>
+                <div class="invalid-feedback">
+                    Selecione o seu estado civil.
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Numero de dependentes</label>
+                <input 
+                    type="number" 
+                    class="form-control" 
+                    formControlName="dependentsNumber" 
+                    [class.is-invalid]="ngForm.submitted && form.controls.dependentsNumber.invalid"
+                    min="0"
+                >
+            </div>
+            <div class="form-group">
+                <label>Renda</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    currencyMask
+                    [options]="{ allowNegative: false, prefix: 'R$ ', thousands: '.', decimal: ',' }"
+                    formControlName="income" 
+                    [class.is-invalid]="ngForm.submitted && form.controls.income.invalid"
+                >
+                <div class="invalid-feedback">
+                    Preencha sua renda.
+                </div>
+            </div>
+            <div class="d-flex justify-content-end mt-2">
+                <button type="submit" class="btn btn-primary">
+                    <app-loader *ngIf="loading"></app-loader>
+                    Enviar
+                </button>
+            </div>
+        </form>
+    </div>
+    <ng-template #resultBlock>
+        <div *ngIf="approved" class="illustration-container">
+            <h3 class="feedback-title text-center">Você foi aprovado!</h3>
+            <app-approved-illustration ></app-approved-illustration>
+            <h5 class="text-center">
+                Parabéns <span class="text-capitalize">{{name}}</span>, seu cartão de crédito foi aprovado com limite de R$ 2000,00
+            </h5>
+        </div>
+        <div *ngIf="!approved" class="illustration-container">
+            <h3 class="feedback-title text-center">Ainda não podemos lhe dar um cartão</h3>
+            <app-denied-illustration></app-denied-illustration>
+            <h5 class="text-center">
+                <span class="text-capitalize">{{name}}</span>, infelizmente ainda não podemos lhe fornecer nosso cartão, mas você pode tentar novamente daqui a três meses.
+            </h5>
+        </div>
+    </ng-template>
+</div>
