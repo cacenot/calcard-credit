@@ -1,6 +1,6 @@
 # Online DEMO
 
-[Karma](https://calcard-credit.firebaseapp.com/)
+[DEMO](https://calcard-credit.firebaseapp.com/)
 
 # CalcardCredit
 
